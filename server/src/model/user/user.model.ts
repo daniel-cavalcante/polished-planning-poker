@@ -1,21 +1,21 @@
 import mongoose, { model, Model } from "mongoose";
 import bcrypt from "bcrypt";
 
-export interface IUser {
+export interface UserInterface {
   name: { firstName: string; lastName: string };
   username: string;
   email: string;
   hash?: string;
 }
 
-interface IUserMethods {
+interface UserMethods {
   setPassword(password: string): Promise<void>;
   validatePassword(password: string): Promise<boolean>;
 }
 
-type UserModel = Model<IUser, {}, IUserMethods>;
+type UserModel = Model<UserInterface, {}, UserMethods>;
 
-const UserSchema = new mongoose.Schema<IUser>({
+const UserSchema = new mongoose.Schema<UserInterface>({
   name: {
     firstName: {
       type: String,
@@ -37,10 +37,10 @@ const UserSchema = new mongoose.Schema<IUser>({
   hash: { type: String },
 });
 
-const iterations = 10;
+const ITERATIONS = 10;
 
 UserSchema.methods.setPassword = async function (password: string) {
-  const result = await bcrypt.hash(password, iterations);
+  const result = await bcrypt.hash(password, ITERATIONS);
   this.hash = result;
 };
 
@@ -49,4 +49,4 @@ UserSchema.methods.validatePassword = async function (password: string) {
   return result;
 };
 
-export const User = model<IUser, UserModel>("User", UserSchema);
+export const User = model<UserInterface, UserModel>("User", UserSchema);
