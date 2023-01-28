@@ -1,5 +1,5 @@
 import { Model, model, Schema } from "mongoose";
-import { MeetingInterface, MeetingMethods, Member } from "./meeting.types";
+import { MeetingInterface, MeetingMethods } from "./meeting.types";
 
 interface MeetingModel extends Model<MeetingInterface, {}, MeetingMethods> {}
 
@@ -31,4 +31,3 @@ export const Meeting = model<MeetingInterface, MeetingModel>(
   "Meeting",
   MeetingSchema
 );
-export { MeetingInterface };
