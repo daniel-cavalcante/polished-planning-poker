@@ -7,21 +7,21 @@ export type Member = {
 
 export type Admin = Member;
 
+export type Ballot = {
+  id: Types.ObjectId;
+  value: number;
+};
+
+export type Topic = {
+  subject: string;
+  votes: Ballot[];
+  id: Types.ObjectId;
+};
+
 export interface MeetingInterface {
   admin: Admin;
   members?: Member[];
-  topics?: [
-    {
-      subject: string;
-      votes: [
-        {
-          id: Types.ObjectId;
-          value: number;
-        }
-      ];
-      id: Types.ObjectId;
-    }
-  ];
+  topics?: Topic[];
 }
 
 export interface MeetingMethods {}
