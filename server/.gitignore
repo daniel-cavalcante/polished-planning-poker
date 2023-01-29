@@ -1,3 +1,5 @@
 # server folder
 /node_modules
 /build
+
+.env

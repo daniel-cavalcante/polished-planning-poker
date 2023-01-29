@@ -1,5 +1,4 @@
 import mongoose, { Types } from "mongoose";
-import * as database from "../../database/memory.db";
 import { Meeting } from "./meeting.model";
 import { Admin, Ballot, Member, Topic } from "./meeting.types";
 
@@ -13,18 +12,6 @@ const TOPIC_X: Topic = {
   votes: [BALLOT_A, BALLOT_B],
   id: new Types.ObjectId(),
 };
-
-beforeAll(async () => {
-  await database.setUp();
-});
-
-afterEach(async () => {
-  await database.dropCollections();
-});
-
-afterAll(async () => {
-  await database.dropDatabase();
-});
 
 describe("Meeting model", () => {
   test("create and save an instance of a meeting", async () => {
