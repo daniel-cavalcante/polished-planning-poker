@@ -1,24 +1,11 @@
 import mongoose from "mongoose";
 import { UserInterface, User } from "./user.model";
-import * as database from "../../database/memory.db";
 
 const USER: UserInterface = {
   name: { firstName: "John", lastName: "Doe" },
   username: "johndoe42",
   email: "johndoe@example.com",
 };
-
-beforeAll(async () => {
-  await database.setUp();
-});
-
-afterEach(async () => {
-  await database.dropCollections();
-});
-
-afterAll(async () => {
-  await database.dropDatabase();
-});
 
 describe("User model", () => {
   test("create and save an instance of an user", async () => {
