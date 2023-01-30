@@ -1,13 +1,9 @@
 import { Model, model, Schema } from "mongoose";
-import { MeetingInterface, MeetingMethods } from "./meeting.types";
+import { IMeeting, MeetingMethods } from "../types/meeting.interface";
 
-interface MeetingModel extends Model<MeetingInterface, {}, MeetingMethods> {}
+interface MeetingModel extends Model<IMeeting, {}, MeetingMethods> {}
 
-const MeetingSchema = new Schema<
-  MeetingInterface,
-  MeetingModel,
-  MeetingMethods
->({
+const MeetingSchema = new Schema<IMeeting, MeetingModel, MeetingMethods>({
   admin: {
     type: { name: String, id: Schema.Types.ObjectId },
     required: true,
@@ -27,7 +23,4 @@ const MeetingSchema = new Schema<
   ],
 });
 
-export const Meeting = model<MeetingInterface, MeetingModel>(
-  "Meeting",
-  MeetingSchema
-);
+export const Meeting = model<IMeeting, MeetingModel>("Meeting", MeetingSchema);

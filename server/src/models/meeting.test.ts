@@ -1,6 +1,6 @@
 import mongoose, { Types } from "mongoose";
 import { Meeting } from "./meeting.model";
-import { Admin, Ballot, Member, Topic } from "./meeting.types";
+import { Admin, Ballot, Member, Topic } from "../types/meeting.interface";
 
 const ADMIN: Admin = { name: "Admin", id: new Types.ObjectId() };
 const MEMBER_A: Member = { name: "Member A", id: new Types.ObjectId() };

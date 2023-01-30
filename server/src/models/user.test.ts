@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
-import { UserInterface, User } from "./user.model";
+import { User } from "./user.model";
+import { IUser } from "../types/user.interface";
 
-const USER: UserInterface = {
+const USER: IUser = {
   name: { firstName: "John", lastName: "Doe" },
   username: "johndoe42",
   email: "johndoe@example.com",

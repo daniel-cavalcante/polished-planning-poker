@@ -1,21 +1,10 @@
 import mongoose, { model, Model } from "mongoose";
 import bcrypt from "bcrypt";
+import { IUser, UserMethods } from "../types/user.interface";
 
-export interface UserInterface {
-  name: { firstName: string; lastName: string };
-  username: string;
-  email: string;
-  hash?: string;
-}
+type UserModel = Model<IUser, {}, UserMethods>;
 
-interface UserMethods {
-  setPassword(password: string): Promise<void>;
-  validatePassword(password: string): Promise<boolean>;
-}
-
-type UserModel = Model<UserInterface, {}, UserMethods>;
-
-const UserSchema = new mongoose.Schema<UserInterface>({
+const UserSchema = new mongoose.Schema<IUser>({
   name: {
     firstName: {
       type: String,
@@ -49,4 +38,4 @@ UserSchema.methods.validatePassword = async function (password: string) {
   return result;
 };
 
-export const User = model<UserInterface, UserModel>("User", UserSchema);
+export const User = model<IUser, UserModel>("User", UserSchema);

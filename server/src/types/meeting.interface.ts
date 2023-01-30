@@ -18,7 +18,7 @@ export type Topic = {
   id: Types.ObjectId;
 };
 
-export interface MeetingInterface {
+export interface IMeeting {
   admin: Admin;
   members?: Member[];
   topics?: Topic[];
